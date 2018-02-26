@@ -57,10 +57,9 @@ void oscEvent(OscMessage theOscMessage) {
         }
         float acc = theOscMessage.get(2).floatValue();
         float cacc = theOscMessage.get(3).floatValue();
-        if(cacc==1){
-          accX = accX + acc;
+        if(cacc==1 && accX + acc/10<2 && accX + acc/10>-2){
+          accX = accX + acc/10;
         }
-        myHue = map(receivedHue, 0, 1, 0, 255);
         velX = velX + (accX*((millis()/1000)-lTime));
         if((curX + (cos(theta)*(velX*((millis()/1000)-lTime)))>=0)&&curX + (cos(theta)*(velX*((millis()/1000)-lTime)))<=780){
           curX = curX + (cos(theta)*(velX*((millis()/1000)-lTime)));
